@@ -1,0 +1,12 @@
+{
+	"include": ["*.ts"],
+	"compilerOptions": {
+		"strict": true,
+		"noUncheckedIndexedAccess": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"target": "ES2024",
+		"moduleResolution": "bundler",
+		"declaration": true,
+	}
+}
