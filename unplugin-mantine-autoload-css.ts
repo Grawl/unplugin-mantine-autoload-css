@@ -147,10 +147,10 @@ const mantineAutoloadCSSFactory: UnpluginFactory<
 		name: 'unplugin-mantine-autoload-css',
 		transformInclude: id => id.endsWith('.ts') || id.endsWith('.tsx'),
 		transform: code => {
-			if (all)
-				return prependCode([`import '${mantineCorePath}/${selectVariant('styles')}'`], code)
 			const match = /import\s*{([\n\s\w,]+)}\s*from\s*['"]@mantine\/core['"]/gm.exec(code)
 			if (match === null) return code
+			if (all)
+				return prependCode([`import '${mantineCorePath}/${selectVariant('styles')}'`], code)
 			const [, group] = match
 			if (group === undefined) return code
 			const maybeComponents = group.split(',').map(string => {
