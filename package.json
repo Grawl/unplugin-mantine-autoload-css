@@ -5,8 +5,10 @@
 		"build": "tsc"
 	},
 	"files": [
-		"unplugin-mantine-autoload-css.js"
+		"unplugin-mantine-autoload-css.js",
+		"unplugin-mantine-autoload-css.d.ts"
 	],
+	"main": "unplugin-mantine-autoload-css.js",
 	"devDependencies": {
 		"@types/node": "^24.0.13",
 		"typescript": "^5.8.3"
