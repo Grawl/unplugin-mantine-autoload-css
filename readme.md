@@ -1,6 +1,6 @@
 # Unplugin Mantine Autoload CSS
 
-![NPM Version](https://img.shields.io/npm/v/unplugin-mantine-autoload-css)
+[![NPM Version](https://img.shields.io/npm/v/unplugin-mantine-autoload-css)](https://www.npmjs.com/package/unplugin-mantine-autoload-css)
 
 [Mantine](https://mantine.dev) [Unplugin](https://unplugin.unjs.io/) to autoload CSS for used components
 
