@@ -58,6 +58,10 @@ export default defineConfig(({ mode }) => ({
 
 > Load `global.css` / `global.layer.css` — global classes used in Mantine components
 
+#### `allDependencies`: `Boolean` / Default: `true`
+
+> Some components like Select do not have any styles on their own – they are built on top of other components. So we cannot automate that without lurking Mantine sources. If you are not sure which components are used in a particular component, you can import all styles for components that are reused in other components. https://mantine.dev/styles/css-files-list/#components-dependencies
+
 ## Problem
 
 In Mantine, you have to manually import CSS for components you use.
