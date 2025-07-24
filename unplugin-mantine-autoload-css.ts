@@ -102,7 +102,7 @@ type StylesheetName = ComponentStylesheetName | GlobalStylesheetName
 // shared subcomponents dependencies are not detected by this module
 // so we load them all
 // all these files are ~30KB combined VS more than 200 KB of all Mantine styles combined
-const shared: ComponentStylesheetName[] = [
+const dependencies: ComponentStylesheetName[] = [
 	'ScrollArea',
 	'UnstyledButton',
 	'VisuallyHidden',
@@ -130,6 +130,7 @@ const mantineAutoloadCSSFactory: UnpluginFactory<
 			baseline?: boolean
 			defaultCSSVariables?: boolean
 			global?: boolean
+			allDependencies?: boolean
 	  }
 	| undefined
 > = ({
@@ -139,6 +140,7 @@ const mantineAutoloadCSSFactory: UnpluginFactory<
 	baseline = true,
 	defaultCSSVariables = true,
 	global = true,
+	allDependencies = true,
 } = {}) => {
 	const selectVariant = (name: 'styles' | StylesheetName): string =>
 		[name, layer ? '.layer.css' : '.css'].join('')
@@ -175,7 +177,7 @@ const mantineAutoloadCSSFactory: UnpluginFactory<
 					global ? selectVariant('global') : null,
 					defaultCSSVariables ? selectVariant('default-css-variables') : null,
 					...forced.map(selectVariant),
-					...shared.map(selectVariant),
+					allDependencies ? dependencies.map(selectVariant) : null,
 					...stylesToAdd,
 				]
 					.filter(fileName => fileName !== null)
