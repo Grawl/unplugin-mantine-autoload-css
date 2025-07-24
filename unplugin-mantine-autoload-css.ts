@@ -120,7 +120,8 @@ const dependencies: ComponentStylesheetName[] = [
 	'ActionIcon',
 ]
 
-const prependCode = (lines: string[], code: string) => [...lines, code].join('\n')
+const prependCode = (lines: string[], code: string) =>
+	[...lines, code].join('\n')
 
 const mantineAutoloadCSSFactory: UnpluginFactory<
 	| {
@@ -149,10 +150,16 @@ const mantineAutoloadCSSFactory: UnpluginFactory<
 		name: 'unplugin-mantine-autoload-css',
 		transformInclude: id => id.endsWith('.ts') || id.endsWith('.tsx'),
 		transform: code => {
-			const match = /import\s*{([\n\s\w,]+)}\s*from\s*['"]@mantine\/core['"]/gm.exec(code)
+			const match =
+				/import\s*{([\n\s\w,]+)}\s*from\s*['"]@mantine\/core['"]/gm.exec(
+					code,
+				)
 			if (match === null) return code
 			if (all)
-				return prependCode([`import '${mantineCorePath}/${selectVariant('styles')}'`], code)
+				return prependCode(
+					[`import '${mantineCorePath}/${selectVariant('styles')}'`],
+					code,
+				)
 			const [, group] = match
 			if (group === undefined) return code
 			const maybeComponents = group.split(',').map(string => {
@@ -175,7 +182,9 @@ const mantineAutoloadCSSFactory: UnpluginFactory<
 				const files = [
 					baseline ? selectVariant('baseline') : null,
 					global ? selectVariant('global') : null,
-					defaultCSSVariables ? selectVariant('default-css-variables') : null,
+					defaultCSSVariables
+						? selectVariant('default-css-variables')
+						: null,
 					...forced.map(selectVariant),
 					allDependencies ? dependencies.map(selectVariant) : null,
 					...stylesToAdd,
@@ -183,7 +192,10 @@ const mantineAutoloadCSSFactory: UnpluginFactory<
 					.filter(fileName => fileName !== null)
 					.flat()
 				return prependCode(
-					files.map(fileName => `import '${mantineCoreStylesPath}/${fileName}'`),
+					files.map(
+						fileName =>
+							`import '${mantineCoreStylesPath}/${fileName}'`,
+					),
 					code,
 				)
 			}
