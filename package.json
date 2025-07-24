@@ -1,7 +1,7 @@
 {
 	"name": "unplugin-mantine-autoload-css",
 	"description": "Unplugin for Mantine to autoload CSS for used components",
-	"version": "0.1.4",
+	"version": "0.2.0",
 	"license": "MIT",
 	"scripts": {
 		"build": "tsc"
